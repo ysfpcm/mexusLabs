@@ -1,6 +1,7 @@
 // page.tsx
 "use client";
 
+import Head from 'next/head';
 import {
   motion,
   useScroll,
@@ -60,87 +61,93 @@ export default function Home() {
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
-    <div
-      className="min-h-screen flex flex-col bg-[#020617] relative"
-      style={{ position: "relative" }}
-      ref={containerRef}
-    >
-      <ParticleRing scrollProgress={scrollYProgress} />
+    <>
+      <Head>
+        <title>mexusLabs - Elevate Your Business</title>
+        <meta name="description" content="mexusLabs by Marc " />
+      </Head>
+      <div
+        className="min-h-screen flex flex-col bg-[#020617] relative"
+        style={{ position: "relative" }}
+        ref={containerRef}
+      >
+        <ParticleRing scrollProgress={scrollYProgress} />
 
-      <GlossyNavbar />
+        <GlossyNavbar />
 
-      <main className="flex-grow">
-        <motion.section
-          className="h-screen flex flex-col justify-center items-center p-10 text-center relative z-10"
-          style={{ opacity, scale, y }}
-        >
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-4xl md:text-6xl font-bold mb-4 text-white"
+        <main className="flex-grow">
+          <motion.section
+            className="h-screen flex flex-col justify-center items-center p-10 text-center relative z-10"
+            style={{ opacity, scale, y }}
           >
-            Welcome to{' '}
-            <span className="text-blue-400">
-              mexus
-            </span>
-            Labs
-          </motion.h2>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-2xl md:text-4xl font-bold mb-4 text-white"
-          >
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-4xl md:text-6xl font-bold mb-4 text-white"
+            >
+              Welcome to{' '}
+              <span className="text-blue-400">
+                mexus
+              </span>
+              Labs
+            </motion.h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-2xl md:text-4xl font-bold mb-4 text-white"
+            >
               Time to elevate your business.
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          >
-            <AnimatedButton text="Let's Connect" href="#contact" />
-          </motion.div>
-        </motion.section>
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <AnimatedButton text="Let's Connect" href="#contact" />
+            </motion.div>
+          </motion.section>
 
-        {/* Adjusted spacer section */}
-        
-        <section className="h-[25vh] flex items-center justify-center"></section>
+          {/* Adjusted spacer section */}
+          
+          <section className="h-[25vh] flex items-center justify-center"></section>
 
-        <section id="projects" className="min-h-screen py-20 relative z-10">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.slice(0, 5).map((project, index) => (
-                <ProjectBox key={project.id} project={project} index={index} />
-              ))}
-              <div className="lg:col-start-3">
-                <ProjectBox project={projects[5]} index={5} />
-              </div>
-              <div className="md:col-span-2 lg:col-span-1 lg:col-start-2">
-                <ProjectBox project={projects[6]} index={6} />
+          <section id="projects" className="min-h-screen py-20 relative z-10">
+            <div className="container mx-auto px-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {projects.slice(0, 5).map((project, index) => (
+                  <ProjectBox key={project.id} project={project} index={index} />
+                ))}
+                <div className="lg:col-start-3">
+                  <ProjectBox project={projects[5]} index={5} />
+                </div>
+                <div className="md:col-span-2 lg:col-span-1 lg:col-start-2">
+                  <ProjectBox project={projects[6]} index={6} />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* New skills section */}
-        <section id="skills" className="min-h-screen py-40 relative z-10">
-          <div className="container mx-auto px-4">
-            <SkillsSection />
-          </div>
-        </section>
+          {/* New skills section */}
+          <section id="skills" className="min-h-screen py-40 relative z-10">
+            <div className="container mx-auto px-4">
+              <SkillsSection />
+            </div>
+          </section>
 
-        <section id="contact" className="min-h-screen py-1 relative z-10">
-          <div className="container mx-auto px-4">
-            <RevealBento />
-          </div>
-        </section>
-      </main>
+          <section id="contact" className="min-h-screen py-1 relative z-10">
+            <div className="container mx-auto px-4">
+              <RevealBento />
+            </div>
+          </section>
+        </main>
 
-      <footer className="p-10 text-center relative z-10">
-        <p>&copy; 2024 mexusLabs by Marc Jean-Baptiste. All rights reserved.</p>
-      </footer>
-    </div>
+        <footer className="p-10 text-center relative z-10">
+          <p>&copy; 2024 mexusLabs by Marc Jean-Baptiste. All rights reserved.</p>
+        </footer>
+      </div>
+    </>
   );
 }
 

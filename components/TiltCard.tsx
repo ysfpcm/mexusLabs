@@ -61,9 +61,11 @@ const TiltCard = forwardRef<HTMLDivElement, TiltCardProps>(
           transformStyle: "preserve-3d",
           transform,
           transition: "transform 0.1s ease-out",
+          backgroundColor: "#0f172a", // Lighter navy blue background
+          borderRadius: "12px", // Rounded corners
           ...style,
         }}
-        className={className}
+        className={`${className} overflow-hidden`}
         initial={initial}
         animate={animate}
         transition={transition}

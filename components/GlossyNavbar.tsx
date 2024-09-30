@@ -6,7 +6,6 @@ import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
-import { FaReact } from "react-icons/fa";
 
 interface BouncyButtonProps {
   children: React.ReactNode;
@@ -59,15 +58,6 @@ export default function GlossyNavbar() {
             <span className="text-white">Labs</span>
           </div>
         </BouncyButton>
-
-        <div className="absolute left-1/2 transform -translate-x-1/2">
-          <BouncyButton
-            href="#contact"
-            className="text-white transition-all duration-300 ease-in-out hover:text-blue-400"
-          >
-            <FaReact className="text-5xl hover:text-6xl transition-all duration-300" />
-          </BouncyButton>
-        </div>
 
         <div className="flex items-center space-x-4">
           <BouncyButton
