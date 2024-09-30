@@ -8,7 +8,6 @@ import Image from 'next/image';
 import React from 'react';
 import { FaReact } from "react-icons/fa";
 
-
 interface BouncyButtonProps {
   children: React.ReactNode;
   href: string;
@@ -50,31 +49,37 @@ export default function GlossyNavbar() {
       }}
       animate={hidden ? 'hidden' : 'visible'}
       transition={{ duration: 0.35, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-2"
+      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-2"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-transparent opacity-20 backdrop-blur-sm"></div>
-      <div className="relative z-10 flex items-center justify-between w-full">
+      <div className="relative z-10 flex items-center justify-between w-full max-w-[98%] mx-auto">
         <BouncyButton href="/" className="text-3xl font-bold">
-          <span className="text-blue-400">mexus</span>
-          <span className="text-white">Labs</span>
+          <div className="flex items-center">
+            <span className="text-blue-400">mexus</span>
+            <span className="text-white">Labs</span>
+          </div>
         </BouncyButton>
 
-        <div className="flex items-center justify-center flex-grow">
-          <BouncyButton href="/" className="">
-            <FaReact className="text-blue-400" size={100} />
+        <div className="absolute left-1/2 transform -translate-x-1/2">
+          <BouncyButton
+            href="#contact"
+            className="text-white transition-all duration-300 ease-in-out hover:text-blue-400"
+          >
+            <FaReact className="text-5xl hover:text-6xl transition-all duration-300" />
           </BouncyButton>
         </div>
 
         <div className="flex items-center space-x-4">
           <BouncyButton
             href="#projects"
-            className="text-white font-semibold hover:text-blue-200 transition-colors text-2xl"
+            className="text-white font-semibold hover:text-blue-200 transition-colors text-lg"
           >
             Projects
           </BouncyButton>
+
           <BouncyButton
             href="#contact"
-            className="px-4 py-2 text-blue-400 bg-white bg-opacity-10 font-bold rounded-md hover:bg-opacity-20 transition-colors text-2xl"
+            className="px-4 py-2 text-blue-400 bg-white font-bold rounded-md hover:bg-blue-100 transition-colors text-lg"
           >
             Contact
           </BouncyButton>

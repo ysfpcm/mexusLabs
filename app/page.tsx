@@ -90,7 +90,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-2xl md:text-4xl font-bold mb-4 text-blue-400"
+            className="text-2xl md:text-4xl font-bold mb-4 text-white"
           >
               Time to elevate your business.
           </motion.h2>
@@ -99,7 +99,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <AnimatedButton text="View Projects" href="#projects" />
+            <AnimatedButton text="Let's Connect" href="#contact" />
           </motion.div>
         </motion.section>
 
