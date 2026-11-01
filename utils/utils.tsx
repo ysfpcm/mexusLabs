@@ -12,10 +12,10 @@ const NUM_POINTS = 2500;
 const getGradientStop = (ratio: number) => {
     ratio = ratio > 1 ? 1 : ratio < 0 ? 0 : ratio;
 
-    const c0 = LEFT_COLOR.match(/.{1,2}/g)?.map(
+    const c0 = LEFT_COLOR.slice(1).match(/.{1,2}/g)?.map(
         (oct) => parseInt(oct, 16) * (1 - ratio)
     ) || [];
-    const c1 = RIGHT_COLOR.match(/.{1,2}/g)?.map(
+    const c1 = RIGHT_COLOR.slice(1).match(/.{1,2}/g)?.map(
         (oct) => parseInt(oct, 16) * ratio
     ) || [];
     const ci = [0, 1, 2].map((i) => Math.min(Math.round((c0[i] || 0) + (c1[i] || 0)), 255));
