@@ -6,6 +6,8 @@ import { FiArrowRight, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 import { SiGithub, SiTiktok, SiYoutube, SiLinkedin } from "react-icons/si";
 import { FaReact } from "react-icons/fa"
 
+const consultationUrl = "https://calendly.com/marlx0879/30min";
+
 const RevealBento: FC = () => {
   return (
     <div className="min-h-screen px-4 py-6 text-zinc-50">
@@ -22,7 +24,7 @@ const RevealBento: FC = () => {
         <SocialsBlock />
         <AboutBlock />
         <LocationBlock />
-        <EmailListBlock />
+        <ContactBlock />
       </motion.div>
     </div>
   );
@@ -77,7 +79,7 @@ const Block: FC<BlockProps> = ({ className, ...rest }) => {
         </span>
       </h1>
       <motion.a
-        href="https://calendly.com/marlx0879/30min" // Replace with your actual Calendly link
+        href={consultationUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-400 text-zinc-900 font-medium hover:bg-blue-300 transition-colors"
@@ -183,25 +185,17 @@ const LocationBlock: FC = () => (
   </Block>
 );
 
-const EmailListBlock: FC = () => (
+const ContactBlock: FC = () => (
   <Block className="col-span-12 md:col-span-9 text-blue-400">
-    <p className="mb-3 text-lg">Join my mailing list for updates and promotional offers.</p>
-    <form
-      onSubmit={(e) => e.preventDefault()}
-      className="flex items-center gap-2"
+    <p className="mb-3 text-lg">Have a project in mind? Let&apos;s discuss how I can help.</p>
+    <a
+      href={consultationUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 rounded bg-blue-400 px-3 py-2 text-sm font-medium text-zinc-900 transition-colors hover:bg-blue-300"
     >
-      <input
-        type="email"
-        placeholder="Enter your email"
-        className="w-full rounded border border-zinc-700 bg-zinc-800 px-3 py-1.5 transition-colors focus:border-blue-600 focus:outline-0"
-      />
-      <button
-        type="submit"
-        className="flex items-center gap-2 whitespace-nowrap rounded bg-blue-400 px-3 py-2 text-sm font-medium text-zinc-900 transition-colors hover:bg-blue-300"
-      >
-        <FiMail /> Join the list
-      </button>
-    </form>
+      <FiMail /> Schedule a consultation
+    </a>
   </Block>
 );
 
@@ -219,4 +213,3 @@ const Logo: FC = () => {
     </svg>
   );
 };
-
