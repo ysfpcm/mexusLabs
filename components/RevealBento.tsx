@@ -2,7 +2,7 @@
 import React, { FC } from "react";
 import { motion, HTMLMotionProps } from "framer-motion";
 import { twMerge } from "tailwind-merge";
-import { FiArrowRight, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
+import { FiArrowRight, FiMail, FiMapPin } from "react-icons/fi";
 import { SiGithub, SiTiktok, SiYoutube, SiLinkedin } from "react-icons/si";
 import { FaReact } from "react-icons/fa"
 
@@ -92,13 +92,6 @@ const Block: FC<BlockProps> = ({ className, ...rest }) => {
   );
 
 const SocialsBlock: FC = () => {
-  const handleCopyContact = () => {
-    const contactInfo = "email@example.com\n+1 (123) 456-7890";
-    navigator.clipboard.writeText(contactInfo).then(() => {
-      alert("Contact information copied to clipboard!");
-    });
-  };
-
   return (
     <>
       <Block
@@ -135,18 +128,16 @@ const SocialsBlock: FC = () => {
           scale: 1.1,
         }}
         className="col-span-6 bg-zinc-50 md:col-span-3"
-        onClick={handleCopyContact}
       >
-        <div className="grid h-full place-content-center text-black cursor-pointer">
-          <div className="flex flex-col items-center text-center">
-            <span className="text-lg font-medium mb-1">Copy</span>
-            <div className="flex items-center text-2xl mb-1">
-              <FiPhone className="mr-2" />
-              <FiMail />
-            </div>
-            <span className="text-sm">To clipboard!</span>
-          </div>
-        </div>
+        <a
+          href={consultationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex h-full flex-col items-center justify-center text-center text-black"
+        >
+          <FiMail className="mb-2 text-2xl" />
+          <span className="text-lg font-medium">Schedule a consultation</span>
+        </a>
       </Block>
       <Block
         whileHover={{
