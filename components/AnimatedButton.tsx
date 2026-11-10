@@ -90,7 +90,7 @@ export default function AnimatedButton({ text, href }: AnimatedButtonProps) {
       >
         <span className="sr-only">{text}</span>
         <span className="flex items-center whitespace-nowrap" aria-hidden>
-          <span className="text-xl sm:text-2xl">{text}</span>
+          <span className="letter inline-block text-xl sm:text-2xl">{text}</span>
           <ArrowRight className="ml-2 w-5 h-5 sm:w-6 sm:h-6" />
         </span>
       </motion.button>
