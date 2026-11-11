@@ -51,9 +51,9 @@ const InfiniteMovingCards = ({
   return (
     <div className="overflow-hidden relative">
       <motion.div
-        className="flex"
+        className="flex w-max min-w-[200%]"
         animate={{
-          x: direction === 'left' ? ['0%', '-100%'] : ['-100%', '0%'],
+          x: direction === 'left' ? ['0%', '-50%'] : ['-50%', '0%'],
         }}
         transition={{
           x: {
@@ -64,12 +64,16 @@ const InfiniteMovingCards = ({
           },
         }}
       >
-        {items.map((skill) => (
-          <SkillCard key={skill.name} skill={skill} />
-        ))}
-        {items.map((skill) => (
-          <SkillCard key={`${skill.name}-duplicate`} skill={skill} />
-        ))}
+        <div className="flex w-1/2 shrink-0 justify-between">
+          {items.map((skill) => (
+            <SkillCard key={skill.name} skill={skill} />
+          ))}
+        </div>
+        <div className="flex w-1/2 shrink-0 justify-between" aria-hidden={true}>
+          {items.map((skill) => (
+            <SkillCard key={skill.name} skill={skill} />
+          ))}
+        </div>
       </motion.div>
     </div>
   );
