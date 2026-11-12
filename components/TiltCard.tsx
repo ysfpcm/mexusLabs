@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef } from "react";
+import React, { useCallback, useRef, forwardRef } from "react";
 import {
   motion,
   useMotionValue,
@@ -15,8 +15,15 @@ interface TiltCardProps extends MotionProps {
 
 const TiltCard = forwardRef<HTMLDivElement, TiltCardProps>(
   ({ children, className, style, initial, animate, transition }, ref) => {
-    const innerRef = useRef<HTMLDivElement>(null);
-    const combinedRef = (ref as React.RefObject<HTMLDivElement>) || innerRef;
+    const innerRef = useRef<HTMLDivElement | null>(null);
+    const combinedRef = useCallback((node: HTMLDivElement | null) => {
+      innerRef.current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    }, [ref]);
 
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -30,9 +37,9 @@ const TiltCard = forwardRef<HTMLDivElement, TiltCardProps>(
     const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
 
     const handleMouseMove = (e: React.MouseEvent) => {
-      if (!combinedRef.current) return;
+      if (!innerRef.current) return;
 
-      const rect = combinedRef.current.getBoundingClientRect();
+      const rect = innerRef.current.getBoundingClientRect();
 
       const width = rect.width;
       const height = rect.height;
