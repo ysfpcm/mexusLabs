@@ -17,11 +17,6 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} bg-gray-900 text-white`}>
         {children}
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            document.addEventListener('contextmenu', (e) => e.preventDefault());
-          `
-        }} />
       </body>
     </html>
   )
