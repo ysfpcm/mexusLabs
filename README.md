@@ -15,21 +15,21 @@ app: Contains core application pages (e.g., page.tsx).
 public: Static assets (images, icons, etc.).
 components: Modular React components for reusability and clarity.
 🛠️ Setup
-Clone the repo:
+Clone the repo, enter the project directory, and install dependencies:
 
-bash
-Copy code
-git clone https://github.com/your-username/mexuslabs.git
-Install dependencies:
-
-bash
-Copy code
+```bash
+git clone https://github.com/ysfpcm/mexusLabs
+cd mexusLabs
 npm install
+```
+
 Start the development server:
 
-bash
-Copy code
+```bash
 npm run dev
+```
+
+Open http://localhost:3000 in your browser.
 📈 Roadmap
  Integrate custom API for future enhancements
  Expand sections for case studies and testimonials
