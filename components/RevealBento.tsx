@@ -103,6 +103,7 @@ const SocialsBlock: FC = () => {
       >
         <a
           href="https://www.youtube.com/@marcjnb" // Update with your YouTube link
+          aria-label="YouTube"
           className="grid h-full place-content-center text-3xl text-white"
         >
           <SiYoutube />
@@ -117,6 +118,7 @@ const SocialsBlock: FC = () => {
       >
         <a
           href="https://github.com/ysfpcm" // Update with your GitHub link
+          aria-label="GitHub"
           className="grid h-full place-content-center text-3xl text-white"
         >
           <SiGithub />
@@ -148,6 +150,7 @@ const SocialsBlock: FC = () => {
       >
         <a
           href="https://www.linkedin.com/in/marcjnb/"
+          aria-label="LinkedIn"
           className="grid h-full place-content-center text-3xl text-white"
         >
           <SiLinkedin />
