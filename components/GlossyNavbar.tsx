@@ -1,7 +1,7 @@
 // glossy-navbar.tsx
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -27,12 +27,18 @@ const BouncyButton: React.FC<BouncyButtonProps> = ({ children, href, className }
 
 export default function GlossyNavbar() {
   const [hidden, setHidden] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
   const { scrollY } = useScroll();
 
   useEffect(() => {
     return scrollY.on("change", (latest) => {
       const previous = scrollY.getPrevious();
-      if (previous !== undefined && latest > previous && latest > 150) {
+      if (
+        previous !== undefined &&
+        latest > previous &&
+        latest > 150 &&
+        !navRef.current?.contains(document.activeElement)
+      ) {
         setHidden(true);
       } else {
         setHidden(false);
@@ -42,6 +48,8 @@ export default function GlossyNavbar() {
 
   return (
     <motion.nav
+      ref={navRef}
+      onFocusCapture={() => setHidden(false)}
       variants={{
         visible: { y: 0 },
         hidden: { y: '-100%' },
