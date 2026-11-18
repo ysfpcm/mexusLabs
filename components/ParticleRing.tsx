@@ -40,9 +40,9 @@ const PointCircle: React.FC<PointCircleProps> = ({ scrollProgress }) => {
   const ref = useRef<THREE.Group>(null);
   const { camera } = useThree();
 
-  useFrame(() => {
+  useFrame((_state, delta) => {
     if (ref.current) {
-      ref.current.rotation.z += 0.001;
+      ref.current.rotation.z += 0.06 * delta;
     }
     const scrollValue = scrollProgress.get();
     camera.position.z = 15 - scrollValue * 10; // Adjust as needed
