@@ -116,15 +116,16 @@ export default function Home() {
           <section id="projects" className="min-h-screen py-20 relative z-10">
             <div className="container mx-auto px-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {projects.slice(0, 5).map((project, index) => (
-                  <ProjectBox key={project.id} project={project} index={index} />
+                {projects.map((project, index) => (
+                  <div
+                    key={project.id}
+                    className={index === projects.length - 1
+                      ? `${projects.length % 2 === 1 ? "md:col-span-2" : ""} ${projects.length % 3 === 1 ? "lg:col-span-1 lg:col-start-2" : "lg:col-span-1"}`
+                      : undefined}
+                  >
+                    <ProjectBox project={project} index={index} />
+                  </div>
                 ))}
-                <div className="lg:col-start-3">
-                  <ProjectBox project={projects[5]} index={5} />
-                </div>
-                <div className="md:col-span-2 lg:col-span-1 lg:col-start-2">
-                  <ProjectBox project={projects[6]} index={6} />
-                </div>
               </div>
             </div>
           </section>
@@ -183,4 +184,3 @@ function ProjectBox({ project, index }: { project: Project; index: number }) {
     </motion.div>
   );
 }
-
