@@ -26,7 +26,7 @@ export default function AnimatedButton({ text, href }: AnimatedButtonProps) {
       {
         x: randomNumberBetween(-100, 100),
         y: randomNumberBetween(-100, 100),
-        scale: randomNumberBetween(1.5, 2.5),
+        scale: 1.5 + Math.random(),
         opacity: 1,
       },
       {
