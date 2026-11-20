@@ -61,27 +61,18 @@ export default function AnimatedButton({ text, href }: AnimatedButtonProps) {
     animateFn([
       ...sparklesReset,
       [".letter", { y: -32 }, { duration: 0.2, delay: stagger(0.05) }],
-      ["button", { scale: 0.8 }, { duration: 0.1, at: "<" }],
-      ["button", { scale: 1 }, { duration: 0.1 }],
+      ["a", { scale: 0.8 }, { duration: 0.1, at: "<" }],
+      ["a", { scale: 1 }, { duration: 0.1 }],
       ...sparklesAnimation,
       [".letter", { y: 0 }, { duration: 0.000001 }],
       ...sparklesFadeOut,
-    ]).then(() => {
-      // Scroll to the target section after the animation
-      if (href.startsWith("#")) {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      } else {
-        window.location.href = href;
-      }
-    });
+    ]);
   };
 
   return (
     <div ref={scope} className="relative">
-      <motion.button
+      <motion.a
+        href={href}
         onClick={onButtonClick}
         className={`${rowdies.className} bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-full inline-flex items-center justify-center relative overflow-hidden shadow-lg`}
         whileTap={{ scale: 0.95 }}
@@ -93,7 +84,7 @@ export default function AnimatedButton({ text, href }: AnimatedButtonProps) {
           <span className="letter inline-block text-xl sm:text-2xl">{text}</span>
           <ArrowRight className="ml-2 w-5 h-5 sm:w-6 sm:h-6" />
         </span>
-      </motion.button>
+      </motion.a>
       <span
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 block overflow-visible"
