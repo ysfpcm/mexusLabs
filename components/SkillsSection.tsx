@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
   Code,
   PenTool,
@@ -33,7 +33,7 @@ const skills: Skill[] = [
 ];
 
 const SkillCard = ({ skill }: { skill: Skill }) => (
-  <div className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col items-center w-64 mx-4 flex-shrink-0">
+  <div className="bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col items-center w-64 max-w-[calc(100%-2rem)] mx-4 flex-shrink-0">
     <div className={`text-4xl mb-4 ${skill.color}`}>
       <skill.icon size={40} />
     </div>
@@ -44,14 +44,26 @@ const SkillCard = ({ skill }: { skill: Skill }) => (
 const InfiniteMovingCards = ({
   items,
   direction,
+  reducedMotion,
 }: {
   items: Skill[];
   direction: 'left' | 'right';
+  reducedMotion: boolean;
 }) => {
+  if (reducedMotion) {
+    return (
+      <div className="flex flex-wrap justify-center gap-y-4">
+        {items.map((skill) => (
+          <SkillCard key={skill.name} skill={skill} />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className="overflow-hidden relative">
       <motion.div
-        className="flex w-max min-w-[200%]"
+        className="flex w-max min-w-[200%] motion-reduce:!transform-none"
         animate={{
           x: direction === 'left' ? ['0%', '-50%'] : ['-50%', '0%'],
         }}
@@ -80,6 +92,9 @@ const InfiniteMovingCards = ({
 };
 
 export default function SkillsSection() {
+  const shouldReduceMotion = useReducedMotion();
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
   const topRowSkills = skills.slice(0, 5); // First 5 skills
   const bottomRowSkills = skills.slice(5);  // Remaining skills
 
@@ -87,8 +102,8 @@ export default function SkillsSection() {
     <section id="skills" className="py-5">
       <div className="container mx-auto px-2">
         <div className="space-y-4">
-          <InfiniteMovingCards items={topRowSkills} direction="right" />
-          <InfiniteMovingCards items={bottomRowSkills} direction="left" />
+          <InfiniteMovingCards items={topRowSkills} direction="right" reducedMotion={isMounted && !!shouldReduceMotion} />
+          <InfiniteMovingCards items={bottomRowSkills} direction="left" reducedMotion={isMounted && !!shouldReduceMotion} />
         </div>
       </div>
     </section>
