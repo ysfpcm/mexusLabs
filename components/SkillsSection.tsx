@@ -99,7 +99,7 @@ export default function SkillsSection() {
   const bottomRowSkills = skills.slice(5);  // Remaining skills
 
   return (
-    <section id="skills" className="py-5">
+    <section className="py-5">
       <div className="container mx-auto px-2">
         <div className="space-y-4">
           <InfiniteMovingCards items={topRowSkills} direction="right" reducedMotion={isMounted && !!shouldReduceMotion} />
