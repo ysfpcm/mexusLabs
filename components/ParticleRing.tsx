@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, Sphere } from "@react-three/drei";
 import { pointsInner, pointsOuter } from "../utils/utils";
-import { MotionValue } from "framer-motion";
+import { MotionValue, useReducedMotion } from "framer-motion";
 import * as THREE from "three";
 
 interface ParticleRingProps {
@@ -39,8 +39,11 @@ interface PointCircleProps {
 const PointCircle: React.FC<PointCircleProps> = ({ scrollProgress }) => {
   const ref = useRef<THREE.Group>(null);
   const { camera } = useThree();
+  const shouldReduceMotion = useReducedMotion();
 
   useFrame((_state, delta) => {
+    if (shouldReduceMotion) return;
+
     if (ref.current) {
       ref.current.rotation.z += 0.06 * delta;
     }
